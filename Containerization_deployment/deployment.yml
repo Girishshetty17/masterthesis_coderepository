@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: retrodiner-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: retrodiner
+  template:
+    metadata:
+      labels:
+        app: retrodiner
+    spec:
+      containers:
+        - name: retrodiner-container
+          image: girishshetty/retrodinerimage:v4
+          ports:
+            - containerPort: 80
+          command:
+            ["/bin/bash", "-c", "service apache2 start && tail -f /dev/null"]
+          resources:
+            requests:
+              cpu: "1" # Increase the CPU request here
