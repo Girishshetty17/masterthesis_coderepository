@@ -1,0 +1,22 @@
+from locust import HttpUser, task
+import json
+
+class ContactUser(HttpUser):
+    @task
+    def contact_form(self):
+        payload = {
+            "body": {
+                "name": "Girish Shetty",
+                "email": "johndoe@example.com",
+                "subject": "Test Subject",
+                "message": "This is a test message"
+            }
+        }
+        headers = {
+            "Content-Type": "application/json"
+        }
+        response = self.client.post("/prod", data=json.dumps(payload), headers=headers)
+        if response.status_code == 200:
+            print("Contact form submitted successfully!")
+        else:
+            print("Contact form submission failed with status code:", response.status_code)

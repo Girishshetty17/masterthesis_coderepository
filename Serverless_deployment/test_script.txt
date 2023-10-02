@@ -1,0 +1,8 @@
+{
+  "body": {
+    "name": "Girish Shetty",
+    "email": "johndoe@example.com",
+    "subject": "Test Subject",
+    "message": "This is a test message"
+  }
+}
